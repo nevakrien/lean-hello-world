@@ -1,5 +1,7 @@
 import LeanHelloWorld
 import Mathlib.Algebra.Ring.Parity
+import Mathlib.Data.Nat.Factorial.Basic
+import Mathlib.Data.Nat.Prime.Basic
 
 
 def main : IO Unit :=
@@ -44,3 +46,16 @@ theorem fact_dvd (m n : Nat) (hm : m > 0) : n ≥ m → m ∣ fact n := by
       have h₂ : m ∣ fact (m + k) := ih hk
       simpa [fact, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm]
         using dvd_mul_of_dvd_right h₂ (m + k + 1)
+
+theorem fact_eq_nat_factorial (n : Nat) :
+  fact n = Nat.factorial n := by
+  induction n with
+  | zero =>
+      simp [fact]
+  | succ n ih =>
+      simp [fact, Nat.factorial, ih]
+
+-- theorem prime_iff_no_factorial_dvd
+--     {n : Nat} (hn : n > 1) :
+--     Nat.Prime n ↔ ¬ ∃ k, 1 < k ∧ k < n ∧ n ∣ Nat.factorial k := by
+--   aesop
