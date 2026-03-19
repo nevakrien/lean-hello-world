@@ -1,0 +1,14 @@
+name = "lean-hello-world"
+version = "0.1.0"
+defaultTargets = ["lean-hello-world"]
+
+[[lean_lib]]
+name = "LeanHelloWorld"
+
+[[lean_exe]]
+name = "lean-hello-world"
+root = "Main"
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
